@@ -1,0 +1,105 @@
+<form [formGroup]="personForm" (ngSubmit) = "save()">
+  <div>
+    <div>first name:</div>
+    <div>
+      <input formControlName = "firstName">
+      <!-- <div class = "errors" *ngIf="personForm.get('firstName').errors">
+        <pre>{{personForm.get('firstName').errors | json}}</pre>
+      </div>-->
+    </div>
+  </div>
+
+  <div>
+    <div>last name:</div>
+    <div>
+      <input formControlName = "lastName">
+    </div>
+  </div>
+
+  <div>
+    <div>email:</div>
+    <div>
+      <input formControlName = "email">
+    </div>
+  </div>
+
+  <ng-container formGroupName = "address">
+  <h2>Address:</h2>
+  <div>
+    <div>city:</div>
+    <div>
+      <input formControlName = "city">
+    </div>
+  </div>
+  <div>
+    <div>street:</div>
+    <div>
+      <input formControlName = "street">
+    </div>
+  </div>
+  </ng-container>
+
+
+  <h2>Children:</h2>
+  <div>
+    <div *ngFor="let item of personForm.get('children').controls; let i=index" [formGroupName]="i">
+      <div >
+        <div>name:</div>
+        <div>
+          <input formControlName = "name">
+        </div>
+      </div>
+
+      <div>
+        <div>age:</div>
+        <div>
+          <input formControlName = "age">
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <p>
+    <button [disabled]="personForm.invalid">Save</button>
+  </p>
+</form>
+
+<table border="1">
+  <thead>
+    <tr>
+      <th>Person value</th>
+      <th>person form value</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>
+        <pre>{{personToEdit | json}}</pre>
+      </td>
+      <td>
+        <pre>{{personForm.value | json}}</pre>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+
+<!--<div>
+  <div>
+    first name:
+  </div>
+  <div>
+<input [formControl] = "firstNameControl">
+<input>
+  </div>
+  <ul>
+    <li>Dirty: {{firstNameControl?.dirty}}</li>
+    <li>enable: {{firstNameControl?.enabled}}</li>
+    <li>valid: {{firstNameControl?.valid}}</li>
+    <li>value: {{firstNameControl?.value}}</li>
+
+    <li>errors: {{firstNameControl.errors | json}}</li>
+  </ul>
+</div>
+-->
